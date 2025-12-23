@@ -3,29 +3,33 @@ import pandas as pd
 
 def remove_consecutive_duplicate_jobs(excel_path: Path, config: dict) -> None:
     """
-    For each unique ID, remove consecutive rows with the same job title.
-    Keeps the first row of consecutive duplicates and preserves non-consecutive duplicates.
+    For each unique ID, collapse consecutive identical job titles.
+    Keeps the EARLIEST effective date for each consecutive job run.
     
-    :param excel_path: Path to the Modified_ Excel file to process
+    Assumes rows are already sorted by:
+        last name ASC,
+        unique ID ASC,
+        effective date DESC
     """
-    # Load the Excel file
     df = pd.read_excel(excel_path)
-    
-    # Assume the first column is the unique ID
+
     id_column = config["unique_id_column"]
     job_title_column = config["job_title_column"]
-    effective_date_column = config["effective_date_column"]
 
-    # Sort by unique ID and Effective Date to ensure correct order
-    df.sort_values([id_column, effective_date_column], inplace=True)
+    def collapse_job_runs(group: pd.DataFrame) -> pd.DataFrame:
+        # Identify job title changes
+        job_change = group[job_title_column] != group[job_title_column].shift()
 
-    # Function to filter consecutive duplicates within each group
-    def filter_group(group: pd.DataFrame) -> pd.DataFrame:
-        mask = group[job_title_column] != group[job_title_column].shift(1)
-        return group[mask]
+        # Assign a run ID to each consecutive block
+        run_id = job_change.cumsum()
 
-    # Apply filtering per unique ID
-    df_cleaned = df.groupby(id_column, group_keys=False).apply(filter_group)
+        # Keep the LAST row of each run (earliest effective date)
+        return group.groupby(run_id, as_index=False).tail(1)
 
-    # Overwrite the Excel file with cleaned data
+    df_cleaned = (
+        df
+        .groupby(id_column, group_keys=False, sort=False)
+        .apply(collapse_job_runs)
+    )
+
     df_cleaned.to_excel(excel_path, index=False)
