@@ -10,10 +10,11 @@ Before using the tool for the first time, Python and required libraries must be 
 
 1. Go to https://www.python.org/downloads/ and download the Python install manager
 2. Follow the setup steps ensuring you check the box that says Add Python to PATH
-3. After Python is installed, open the command prompt
-4. Run the following commands:\
+3. You will be asked three questions, type "y" and hit enter. The 4th is an online help question, type "n" and hit enter
+4. After Python is installed, open the command prompt
+5. Run the following commands:\
    ```python -m pip install --upgrade pip```\
-   ```python -m pip install pandas```\
+   ```python -m pip install pandas```
    ```python -m pip install openpyxl```
 
 
@@ -49,7 +50,7 @@ Before using the tool for the first time, Python and required libraries must be 
 
 ## Troubleshooting
 
-- If the tool does not run, make sure `setup.ps1` has been executed successfully
+- Don't. It's hopeless.
 - Ensure Python is available by running: python --version
 
 ---
