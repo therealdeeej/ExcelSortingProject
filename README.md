@@ -1,6 +1,6 @@
 # Data Processing Tool
 
-This tool processes a single Microsoft Excel file and generates output files automatically.
+This tool processes and cleans up payroll data.
 
 ---
 
