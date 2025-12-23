@@ -1,5 +1,5 @@
 # Ignore all files in input folder (including tmp)
- /input/*
+ input/*
 
 # Ignore the output folder
  /output
