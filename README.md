@@ -14,7 +14,7 @@ Before using the tool for the first time, Python and required libraries must be 
 4. After Python is installed, open the command prompt
 5. Run the following commands:\
    ```python -m pip install --upgrade pip```\
-   ```python -m pip install pandas```
+   ```python -m pip install pandas```\
    ```python -m pip install openpyxl```
 
 
