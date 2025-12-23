@@ -1,7 +1,0 @@
-{
-  "unique_id_column": "SSN",
-  "first_name_column": "First Name",
-  "last_name_column": "Last Name",
-  "job_title_column": "Job Title",
-  "effective_date_column": "Effective Date"
-}
