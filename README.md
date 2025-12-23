@@ -6,6 +6,9 @@ This tool processes and cleans up payroll data.
 
 ## First-Time Setup (Only Needed Once)
 
+Clone this repo using:
+   ```git clone https://github.com/therealdeeej/ExcelSortingProject.git``` in a command prompt
+   
 Before using the tool for the first time, Python and required libraries must be installed.
 
 1. Go to https://www.python.org/downloads/ and download the Python install manager
